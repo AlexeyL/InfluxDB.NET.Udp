@@ -17,7 +17,7 @@ namespace InfluxDB.NET.Udp.Models
         }
 
         /// <summary>
-        /// Measurement name (Serie name to write the data into).
+        /// Measurement name.
         /// </summary>
         public string Measurement { get; set; }
 
@@ -32,7 +32,7 @@ namespace InfluxDB.NET.Udp.Models
         public IDictionary<string, object> Fields { get; set; }
 
         /// <summary>
-        /// Explicit point timestamp (optional).
+        /// Point timestamp (optional).
         /// </summary>
         public DateTime? Timestamp { get; set; }
 

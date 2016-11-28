@@ -11,7 +11,14 @@ namespace InfluxDB.NET.Udp
 {
     public class InfluxDbUdpClient
     {
+        /// <summary>
+        /// Connectio ip address
+        /// </summary>
         private string ConnectionIpString { get; set; }
+        
+        /// <summary>
+        /// Connection port
+        /// </summary>
         private int ConnectionPort { get; set; }
 
         public InfluxDbUdpClient(string connectionIpString, int connectionPort)
@@ -23,11 +30,19 @@ namespace InfluxDB.NET.Udp
             this.ConnectionPort = connectionPort;
         }
 
+        /// <summary>
+        /// Write point into infulxdb
+        /// </summary>
+        /// <param name="point"></param>
         public void WritePoint(Point point)
         {
             this.WritePoint(new[] { point });
         }
 
+        /// <summary>
+        /// Write buch of point to influxdb
+        /// </summary>
+        /// <param name="points"></param>
         public void WritePoint(IEnumerable<Point> points)
         {
             string data = String.Join("\n", points.Select(p => p.ToString()));
