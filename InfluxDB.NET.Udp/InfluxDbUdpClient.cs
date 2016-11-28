@@ -47,10 +47,5 @@ namespace InfluxDB.NET.Udp
             }
         }
 
-        //private static string EscapeString(string input)
-        //{
-        //    return input.Replace(",", @"\,").Replace(" ", @"\ ").Replace("=", @"\=");
-        //}
-
     }
 }

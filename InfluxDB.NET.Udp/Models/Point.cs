@@ -43,9 +43,8 @@ namespace InfluxDB.NET.Udp.Models
         /// <returns>string ready to be written into database</returns>
         public override string ToString()
         {
-            ValidationHelper.NotNullOrEmpty(this.Measurement, "measurement");
-            ValidationHelper.NotNull(this.Tags, "tags");
-            ValidationHelper.NotNull(this.Fields, "fields");
+            if (string.IsNullOrEmpty(this.Measurement))
+                throw new ArgumentException("Measurement missed.");
 
             var tags = string.Join(",",
                 this.Tags.Select(t => string.Join("=", t.Key, FormatterHelper.EscapeTagValue(t.Value.ToString()))));

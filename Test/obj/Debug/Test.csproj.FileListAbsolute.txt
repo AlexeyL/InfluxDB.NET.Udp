@@ -1,0 +1,8 @@
+E:\Development\Github\InfluxDB.NET.Udp\Test\bin\Debug\Test.exe.config
+E:\Development\Github\InfluxDB.NET.Udp\Test\bin\Debug\Test.exe
+E:\Development\Github\InfluxDB.NET.Udp\Test\bin\Debug\Test.pdb
+E:\Development\Github\InfluxDB.NET.Udp\Test\bin\Debug\InfluxDB.NET.Udp.dll
+E:\Development\Github\InfluxDB.NET.Udp\Test\bin\Debug\InfluxDB.NET.Udp.pdb
+E:\Development\Github\InfluxDB.NET.Udp\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+E:\Development\Github\InfluxDB.NET.Udp\Test\obj\Debug\Test.exe
+E:\Development\Github\InfluxDB.NET.Udp\Test\obj\Debug\Test.pdb

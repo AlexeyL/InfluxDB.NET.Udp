@@ -10,27 +10,18 @@ namespace InfluxDB.NET.Udp.Helpers
     {
         internal static string EscapeNonTagValue(string value)
         {
-            ValidationHelper.NotNull(value, "value");
+            if (value == null)
+                throw new ArgumentNullException();
 
-            var result = value
-                .Replace(@"""", @"\""")
-                .Replace(@" ", @"\ ")
-                .Replace(@"=", @"\=")
-                .Replace(@",", @"\,");
-
-            return result;
+            return value.Replace(@"""", @"\""").Replace(@" ", @"\ ").Replace(@"=", @"\=").Replace(@",", @"\,");
         }
 
         internal static string EscapeTagValue(string value)
         {
-            ValidationHelper.NotNull(value, "value");
+            if (value == null)
+                throw new ArgumentNullException();
 
-            var result = value
-                .Replace(@" ", @"\ ")
-                .Replace(@"=", @"\=")
-                .Replace(@",", @"\,");
-
-            return result;
+            return value.Replace(@" ", @"\ ").Replace(@"=", @"\=").Replace(@",", @"\,");
         }
 
         internal static int ConvertToUnixTime(DateTime datetime)

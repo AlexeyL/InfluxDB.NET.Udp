@@ -49,6 +49,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InfluxDB.NET.Udp\InfluxDB.NET.Udp.csproj">
+      <Project>{c66058e5-244c-42f5-80b0-759600204ae2}</Project>
+      <Name>InfluxDB.NET.Udp</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
