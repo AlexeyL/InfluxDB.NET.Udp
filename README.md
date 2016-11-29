@@ -1,2 +1,2 @@
 # InfluxDB.NET.Udp
-Allows write data to InfluxDB through UDP
+Allows write data into InfluxDB through UDP protocol

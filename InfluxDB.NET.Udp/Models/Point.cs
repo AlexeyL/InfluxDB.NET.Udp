@@ -10,6 +10,9 @@ namespace InfluxDB.NET.Udp.Models
     /// </summary>
     public class Point
     {
+        /// <summary>
+        /// Poin constructor
+        /// </summary>
         public Point()
         {
             Tags = new Dictionary<string, object>();
@@ -38,7 +41,7 @@ namespace InfluxDB.NET.Udp.Models
 
 
         /// <summary>
-        /// Convert point to string
+        /// Sttring representation of point
         /// </summary>
         /// <returns>string ready to be written into database</returns>
         public override string ToString()
