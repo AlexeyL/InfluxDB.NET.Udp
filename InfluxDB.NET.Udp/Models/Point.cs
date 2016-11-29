@@ -52,7 +52,8 @@ namespace InfluxDB.NET.Udp.Models
             var tags = string.Join(",",
                 this.Tags.Select(t => string.Join("=", t.Key, FormatterHelper.EscapeTagValue(t.Value.ToString()))));
 
-            var fields = string.Join(",", this.Fields.Select(t => this.ToString()));
+            var fields = string.Join(",",
+                this.Fields.Select(f => string.Join("=", f.Key, FormatterHelper.EscapeTagValue(f.Value.ToString()))));
 
             var key = string.IsNullOrEmpty(tags)
                 ? FormatterHelper.EscapeNonTagValue(this.Measurement)
