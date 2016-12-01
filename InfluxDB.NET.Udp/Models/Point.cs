@@ -49,19 +49,10 @@ namespace InfluxDB.NET.Udp.Models
             if (string.IsNullOrEmpty(this.Measurement))
                 throw new ArgumentException("Measurement missed.");
 
-            var tags = string.Join(",",
-                this.Tags.Select(t => string.Join("=", t.Key, FormatterHelper.EscapeTagValue(t.Value.ToString()))));
-
-            var fields = string.Join(",",
-                this.Fields.Select(f => string.Join("=", f.Key, FormatterHelper.EscapeTagValue(f.Value.ToString()))));
-
-            var key = string.IsNullOrEmpty(tags)
-                ? FormatterHelper.EscapeNonTagValue(this.Measurement)
-                : string.Join(",", FormatterHelper.EscapeNonTagValue(this.Measurement), tags);
-
-            var ts = this.Timestamp.HasValue
-                ? FormatterHelper.ConvertToUnixTime(this.Timestamp.Value).ToString()
-                : string.Empty;
+            var tags = FormatterHelper.ConvertTagsToString(this.Tags);
+            var fields = FormatterHelper.ConvertFieldsToString(this.Fields);
+            var key = FormatterHelper.GetKeyFormTagsAndMeasure(tags, this.Measurement);
+            var ts = FormatterHelper.ConvertToUnixTimeString(this.Timestamp);
 
             var result = $"{key} {fields} {ts}";
 
