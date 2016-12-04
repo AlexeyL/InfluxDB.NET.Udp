@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using InfluxDB.NET.Udp;
 using InfluxDB.NET.Udp.Models;
 
@@ -71,6 +72,8 @@ namespace Test
                     point.Timestamp = DateTime.Now;
 
                     points.Add(point);
+                    
+                    Thread.Sleep(1000);
                 }
             }
 
