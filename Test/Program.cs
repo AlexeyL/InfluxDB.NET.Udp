@@ -10,9 +10,9 @@ namespace Test
         static void Main(string[] args)
         {
             //Init InfluxDbUdpClient
-            InfluxDbUdpClient client = new InfluxDbUdpClient("172.0.0.1", 8083);
+            InfluxDbUdpClient client = new InfluxDbUdpClient("127.0.0.1", 8089);
 
-            WriteOnePoint(client);
+            //WriteOnePoint(client);
             WriteBunchOfPoint(client);
 
         }
@@ -20,15 +20,14 @@ namespace Test
         private static void WriteOnePoint(InfluxDbUdpClient client)
         {
             //Init one point with two tags and two fields
-            Point point = new Point() { Measurement = "TestMeasure" };
+            Point point = new Point() { Measurement = "Measure" };
             Dictionary<string, object> tags = new Dictionary<string, object>();
             Dictionary<string, object> fields = new Dictionary<string, object>();
 
-            tags.Add("Tag1", "TagValue1");
-            tags.Add("Tag2", 1);
+            tags.Add("cpu", "intel");
 
-            fields.Add("Field1", "FieldValue1");
-            fields.Add("Field2", 100);
+            fields.Add("value", 100);
+            fields.Add("value2", 75);
 
             point.Tags = tags;
             point.Fields = fields;
@@ -47,7 +46,7 @@ namespace Test
 
         private static void WriteBunchOfPoint(InfluxDbUdpClient client)
         {
-            string measurement = "TestMeasure";
+            string measurement = "Measure";
             
             //Init one point with two tags and two fields
             List<Point> points = new List<Point>();
@@ -56,18 +55,23 @@ namespace Test
             {
                 Point point = new Point() {Measurement = measurement};
                 Dictionary<string, object> tags = new Dictionary<string, object>();
-                Dictionary<string, object> fields = new Dictionary<string, object>();
+                Dictionary<string, object> fields;
+
+                tags.Add("cpu", "intel");
 
                 for (int j = i; j < i + 5; j++)
                 {
-                    tags.Add("Tag1", "TagValue" + j);
-                    tags.Add("Tag2", j);
+                    fields = new Dictionary<string, object>();
 
-                    fields.Add("Field1", "Field" + j);
-                    fields.Add("Field2", j);
+                    fields.Add("value", j);
+                    fields.Add("value2", j + 100);
+
+                    point.Tags = tags;
+                    point.Fields = fields;
+                    point.Timestamp = DateTime.Now;
+
+                    points.Add(point);
                 }
-
-                points.Add(point);
             }
 
             //Write point

@@ -48,9 +48,24 @@ namespace InfluxDB.NET.Udp.Helpers
         /// <returns>DateTime in unix representation</returns>
         internal static string ConvertToUnixTimeString(DateTime? datetime)
         {
-            return datetime.HasValue
-                ? string.Format("{0}000000000", (Int32)(datetime.Value.Subtract(new DateTime(1970, 1, 1))).TotalSeconds)
-                : string.Empty;
+            string result = string.Empty;
+
+            if (datetime.HasValue)
+            {
+                int year = datetime.Value.Year;
+                int month = datetime.Value.Month;
+                int day = datetime.Value.Day;
+                int hout = datetime.Value.Hour;
+                int minutes = datetime.Value.Minute;
+                int seconds = datetime.Value.Second;
+
+                var dt = new DateTime(year, month, day, hout, minutes, seconds, DateTimeKind.Local);
+                var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
+                result = string.Format("{0}000000000", ((dt.ToUniversalTime() - epoch).TotalSeconds));
+            }
+
+            return result;
         }
 
         /// <summary>
